@@ -6,8 +6,8 @@ urls:
 # Imports and Dependencies
 
 ## Guidance
-- Avoid cyclic imports by moving imports inside functions or methods.
-- Keep module boundaries clear to prevent mutual dependency.
+- Break cycles by moving shared code to a lower-level module and keeping module boundaries clear.
+- When a cycle is unavoidable, import inside the function or method as a last resort.
 
 ## Bad Example
 

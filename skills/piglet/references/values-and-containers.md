@@ -8,7 +8,6 @@ urls:
 
 ## Guidance
 - Replace repeated magic literals with named constants or enums.
-- Prefer sets or dicts for membership checks.
 - Use lazy iterables when possible to avoid large allocations.
 
 ## Bad Example
@@ -38,25 +37,4 @@ def mark_trip_as_featured(trip):
     elif trip.source == TripSource.FROM_IOS_CLIENT:
         do_some_other_thing(trip)
     return
-```
-
-## Bad Example
-
-```python
-VALID_NAMES = ["piglei", "raymond", "bojack", "caroline"]
-
-def validate_name(name):
-    if name not in VALID_NAMES:
-        raise ValueError(f"{name} is not a valid name!")
-```
-
-## Good Example
-
-```python
-VALID_NAMES = ["piglei", "raymond", "bojack", "caroline"]
-VALID_NAMES_SET = set(VALID_NAMES)
-
-def validate_name(name):
-    if name not in VALID_NAMES_SET:
-        raise ValueError(f"{name} is not a valid name!")
 ```

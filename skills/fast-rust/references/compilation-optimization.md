@@ -14,7 +14,6 @@ urls:
 ## Measure First
 
 - Use `cargo build --timings` to visualize compile time hot spots.
-- For Rust 1.59 or earlier: `cargo +nightly build -Ztimings`.
 - Inspect the HTML Gantt chart to decide on crate splitting or `codegen-units` tuning.
 
 ## Dependency Hygiene

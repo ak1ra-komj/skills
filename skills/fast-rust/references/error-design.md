@@ -60,16 +60,14 @@ pub struct AppError {
     message: String,
 }
 
-impl AppError {
-    pub fn new(kind: ErrorKind, message: impl Into<String>) -> Self {
-        Self { kind, message: message.into() }
-    }
-}
-
 pub fn fetch_user(id: &str) -> Result<User, AppError> {
-    let raw = call_upstream(id)
-        .map_err(|_| AppError::new(ErrorKind::Temporary, format!("fetch_user {id}")))?;
-    parse_user(&raw)
-        .map_err(|_| AppError::new(ErrorKind::NotFound, format!("user {id}")))
+    let raw = call_upstream(id).map_err(|_| AppError {
+        kind: ErrorKind::Temporary,
+        message: format!("fetch_user {id}"),
+    })?;
+    parse_user(&raw).map_err(|_| AppError {
+        kind: ErrorKind::NotFound,
+        message: format!("user {id}"),
+    })
 }
 ```

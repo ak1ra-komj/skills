@@ -30,11 +30,9 @@ urls:
 - Mixing enum dispatch with type dispatch, losing type information while duplicating branches.
 - Pushing GATs too deep in the type graph, leading to steep compile-time costs.
 
-## Example (validated with Rust)
+## Example
 
 ```rust
-use std::borrow::Cow;
-
 trait Array {
     type Item;
     type RefItem<'a>
@@ -95,47 +93,6 @@ impl ArrayBuilder for I32ArrayBuilder {
     }
 }
 
-#[derive(Debug, PartialEq, Eq)]
-struct StringArray {
-    data: Vec<Option<String>>,
-}
-
-struct StringArrayBuilder {
-    data: Vec<Option<String>>,
-}
-
-impl Array for StringArray {
-    type Item = String;
-    type RefItem<'a> = &'a str where Self: 'a;
-    type Builder = StringArrayBuilder;
-
-    fn len(&self) -> usize {
-        self.data.len()
-    }
-
-    fn get(&self, idx: usize) -> Option<Self::RefItem<'_>> {
-        self.data[idx].as_deref()
-    }
-}
-
-impl ArrayBuilder for StringArrayBuilder {
-    type Array = StringArray;
-
-    fn with_capacity(capacity: usize) -> Self {
-        Self {
-            data: Vec::with_capacity(capacity),
-        }
-    }
-
-    fn push(&mut self, item: Option<<Self::Array as Array>::RefItem<'_>>) {
-        self.data.push(item.map(|value| value.to_owned()));
-    }
-
-    fn finish(self) -> Self::Array {
-        StringArray { data: self.data }
-    }
-}
-
 fn build_array_from_vec<A>(items: &[Option<A::RefItem<'_>>]) -> A
 where
     A: Array,
@@ -147,25 +104,9 @@ where
     }
     builder.finish()
 }
-
-fn main() {
-    let ints = vec![Some(1), Some(2), None, Some(4)];
-    let int_array = build_array_from_vec::<I32Array>(&ints);
-    assert_eq!(int_array.len(), 4);
-    assert_eq!(int_array.get(1), Some(2));
-
-    let strings = vec![Some("a"), None, Some("b")];
-    let str_array = build_array_from_vec::<StringArray>(&strings);
-    assert_eq!(str_array.len(), 3);
-    assert_eq!(str_array.get(2), Some("b"));
-
-    let borrowed: Option<&str> = str_array.get(0);
-    let owned: Cow<'_, str> = borrowed.map(Cow::from).unwrap_or_default();
-    assert_eq!(owned, "a");
-}
 ```
 
 ## Validation Notes
 
+- For variable-width data, set `RefItem<'a> = &'a str` and convert to owned values in the builder's `push`.
 - If you add a non-`Copy` view type, change the builder to accept references instead of copying values.
-- When mapping semantic types to representations, prefer macro-generated mappings and keep conversion logic explicit.

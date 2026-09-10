@@ -15,20 +15,24 @@ This file is Markdown-first for clean parsing. For human-friendly reading, use t
 ## Friendly Python references (Markdown)
 
 - [API design](https://raw.githubusercontent.com/psiace/skills/main/skills/friendly-python/references/api-design.md): Guidance for shaping Python APIs.
+- [Application architecture](https://raw.githubusercontent.com/psiace/skills/main/skills/friendly-python/references/application-architecture.md): Transport, application, domain, and infrastructure boundaries.
 - [CLI argparse](https://raw.githubusercontent.com/psiace/skills/main/skills/friendly-python/references/cli-argparse.md): Argparse patterns and conventions.
 - [Error handling](https://raw.githubusercontent.com/psiace/skills/main/skills/friendly-python/references/error-handling.md): Exceptions, error models, and resilience.
 - [Extension architecture](https://raw.githubusercontent.com/psiace/skills/main/skills/friendly-python/references/extension-architecture.md): Plugin systems and extension points.
+- [Kill AI slop](https://raw.githubusercontent.com/psiace/skills/main/skills/friendly-python/references/kill-ai-slop.md): Remove redundant validation, leaked internals, and placeholder failure handling.
 - [OOP design](https://raw.githubusercontent.com/psiace/skills/main/skills/friendly-python/references/oop-design.md): Practical object modeling.
 - [Portability and Pythonic style](https://raw.githubusercontent.com/psiace/skills/main/skills/friendly-python/references/portability-pythonic.md): Cross-platform behavior and idioms.
 - [Principles](https://raw.githubusercontent.com/psiace/skills/main/skills/friendly-python/references/principles.md): Core principles and heuristics.
+- [Python conventions](https://raw.githubusercontent.com/psiace/skills/main/skills/friendly-python/references/python-conventions.md): Explicit signatures, naming, package APIs, and bounded external work.
 - [Reuse and composition](https://raw.githubusercontent.com/psiace/skills/main/skills/friendly-python/references/reuse-composition.md): Composition-oriented design.
 - [Review checklist](https://raw.githubusercontent.com/psiace/skills/main/skills/friendly-python/references/review-checklist.md): Code review focus areas.
+- [Testing](https://raw.githubusercontent.com/psiace/skills/main/skills/friendly-python/references/testing.md): Test scope, isolation, structure, and time control.
 
 ## Piglet references (Markdown)
 
 - [Variables and naming](https://raw.githubusercontent.com/psiace/skills/main/skills/piglet/references/variables-and-naming.md): Naming, scope, and explicit data flow.
 - [Branching and conditions](https://raw.githubusercontent.com/psiace/skills/main/skills/piglet/references/if-else-and-branches.md): Reduce nesting and clarify conditions.
-- [Numbers, strings, containers](https://raw.githubusercontent.com/psiace/skills/main/skills/piglet/references/values-and-containers.md): Replace magic literals and choose containers.
+- [Numbers, strings, containers](https://raw.githubusercontent.com/psiace/skills/main/skills/piglet/references/values-and-containers.md): Replace magic literals and avoid unnecessary allocations.
 - [Functions and returns](https://raw.githubusercontent.com/psiace/skills/main/skills/piglet/references/functions-and-returns.md): Stable returns and single responsibility.
 - [Exception handling](https://raw.githubusercontent.com/psiace/skills/main/skills/piglet/references/exceptions-handling.md): Narrow try blocks and specific exceptions.
 - [Loops and iteration](https://raw.githubusercontent.com/psiace/skills/main/skills/piglet/references/loops-and-iteration.md): Iterator helpers for clearer loops.

@@ -33,9 +33,9 @@ class NewsGrabber:
         if source == 'HN':
             return HNSource().iter_news()
         elif source == 'V2':
-            return V2Source().iternews()
+            return V2Source().iter_news()
         elif source == 'Reddit':
-            return RedditSource().iternews()
+            return RedditSource().iter_news()
         else:
             raise ValueError(f"Not supported source: {source}")
 ```

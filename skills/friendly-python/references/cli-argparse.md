@@ -24,13 +24,23 @@ Define commands as classes with explicit arguments:
 ```python
 class Command:
     """Base class"""
+    name = ""
+
     def add_arguments(self, parser):
         pass  # Optional: no arguments
 
+    def handle(self, args):
+        raise NotImplementedError
+
 class GreetCommand(Command):
     """greet command"""
+    name = "greet"
+
     def add_arguments(self, parser):
         parser.add_argument('-n', '--name', default='John Doe', help='name of the person to greet')
+
+    def handle(self, args):
+        print(f"Hello, {args.name}!")
 ```
 
 Register subcommands and bind handlers:

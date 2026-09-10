@@ -24,7 +24,7 @@ Multiple switches in `__init__` quickly become unclear:
 ```python
 class Settings:
     ...
-    def __init__(self, **kwargs, from_env=False, from_file=None):
+    def __init__(self, from_env=False, from_file=None, **kwargs):
         if from_env:
             self._load_from_env()
         elif from_file:
@@ -45,11 +45,14 @@ class ConfigItem:
     def __get__(self, instance, owner):
         if instance is None:
             return self
-        return instance._data[self.name] or os.getenv(self.env_name)
+        value = instance._data.get(self.name)
+        return value if value is not None else os.getenv(self.env_name)
 
 # Usage
 class Settings:
     db_url = ConfigItem()
     db_password = ConfigItem()
-    ...
+
+    def __init__(self):
+        self._data = {}
 ```

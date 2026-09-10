@@ -69,7 +69,7 @@ def my_effect():
     try:
         yield
     finally:
-        # cleanup
+        pass  # cleanup
 
 use_effect(my_effect, [])
 ```

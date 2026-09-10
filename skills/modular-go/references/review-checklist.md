@@ -18,6 +18,7 @@ Use this checklist for a fast architecture sanity check before merge.
 ## State and Lifecycle
 
 - Can core logic be stateless functions instead of mutable objects?
+- Are state transitions explicit and forward-only?
 - If a manager exists (for example, `SessionManager`), are operations exposed by ID?
 - Are shared mutable registries synchronized with explicit, narrow lock scope?
 - Is every shared resource acquisition paired with a deterministic release path?
@@ -30,7 +31,8 @@ Use this checklist for a fast architecture sanity check before merge.
 
 ## Orchestration and Shutdown
 
-- Is orchestration thin, with helper methods focused on one capability each?
+- Is orchestration thin, with helper methods focused on one capability and independently testable?
+- Does the primary `Run`/`Execute` flow read top-to-bottom as a story?
 - Does each orchestration stage include a short intent comment?
 - Are dependencies, background loops, and shutdown callbacks wired in one constructor path?
 - Is every package boundary justified by a distinct responsibility, not file size?
@@ -38,6 +40,8 @@ Use this checklist for a fast architecture sanity check before merge.
 ## Transport Handlers (gRPC/HTTP)
 
 - Do handlers follow unmarshal → delegate → marshal and nothing else?
+- Is the handler free of gRPC-specific types (`codes`, `status`, proto messages)?
 - Is business logic delegated to injected domain dependencies, not implemented in handlers?
-- Is error-to-status conversion centralized rather than scattered across handlers?
+- Is error-to-status conversion centralized at request boundaries rather than scattered across handlers or core logic?
 - Are domain dependencies injected via constructor, not accessed through globals?
+- Is `context.Context` from the RPC propagated to downstream calls?

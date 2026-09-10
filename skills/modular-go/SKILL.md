@@ -33,8 +33,7 @@ Concise guidance for designing Go packages that stay small, focused, and easy to
 3. Keep helpers local by default; extract to `xxxutil` only for real cross-package reuse.
 4. Keep transport handlers focused on protocol mapping and delegate behavior to injected dependencies.
 5. Compose orchestration from focused functions, with short stage-intent comments.
-6. Re-evaluate boundaries when a package can no longer be explained in one sentence.
-7. Re-check against the reference checklists before merge.
+6. Re-check against the reference checklist before merge.
 
 ## Topics
 
@@ -45,8 +44,3 @@ Concise guidance for designing Go packages that stay small, focused, and easy to
 | Orchestration | Use a single public executor and internal helpers | [references/orchestration.md](references/orchestration.md) |
 | gRPC Practices | Keep handlers as thin translators; isolate transport from domain | [references/grpc-practices.md](references/grpc-practices.md) |
 | Review Checklist | Run a fast architecture sanity check before merge | [references/review-checklist.md](references/review-checklist.md) |
-
-## References
-
-- Reference files are intentionally short and task-focused.
-- Source links are listed in each reference file frontmatter `urls`.

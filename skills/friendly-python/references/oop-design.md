@@ -53,15 +53,3 @@ class Settings:
     db_password = ConfigItem()
     ...
 ```
-
-```python
-class Settings:
-
-    db_user = ConfigItem()
-
-    @ConfigItem
-    def db_password(self, value):
-        if len(value) < 8:
-            raise ValueError("Password must be at least 8 characters")
-        return value
-```

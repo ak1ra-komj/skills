@@ -39,14 +39,10 @@ memory = StoredMemory.model_validate(payload)
 
 ## Contracts
 
-- Distinguish public and private members. Prefix private modules, models,
-  classes, methods, and attributes with `_`, and export only what callers need.
 - In public in-process APIs, accept the domain object when callers already have
   it instead of making them extract an internal ID. Keep identifiers at
   serialization, storage, or process boundaries, or when identity is the
   explicit contract.
-- Store simple values as class or instance attributes. Use `@property` for
-  values computed on access and descriptors for specialized reusable behavior.
 
 Avoid making callers extract an implementation detail:
 

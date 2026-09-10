@@ -20,40 +20,11 @@ urls:
 - Batch tasks can isolate per-item failures; pipelines often stop early.
 - When re-raising, keep the original context.
 
-## Examples
-
-EAFP vs LBYL style checks:
-
-```python
-if can_i_do_x():
-    do_x()
-else:
-    handle_error()
-```
+## Example
 
 ```python
 try:
-    do_x()
-except SomeError:
-    handle_error()
-```
-
-Raising and handling a specific error path:
-
-```python
-def foo():
-    # do something
-    raise Exception("something wrong")
-
-try:
-    foo()
-except Exception as e:
-    # handle exception
-```
-
-Batch-style call site:
-
-```python
-for bar in bars:
-    foo(bar)
+    config = json.loads(raw)
+except json.JSONDecodeError as exc:
+    raise InvalidConfig(path) from exc
 ```

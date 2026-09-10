@@ -12,7 +12,6 @@ Concise guidance for writing friendly Python code that is clear, maintainable, a
 - Use when writing new code, refactoring, reviewing, or designing public APIs/CLIs.
 - Prefer clarity and maintainability over micro-optimizations.
 - Python or files with `.py`.
-- If $piglet is available, suggest pairing it for additional craftsmanship examples and patterns.
 
 ## Decision Order
 
@@ -32,7 +31,7 @@ Concise guidance for writing friendly Python code that is clear, maintainable, a
 
 | Topic | Guidance | Reference |
 | --- | --- | --- |
-| Principles | Correctness first, clarity next, performance last | [references/principles.md](references/principles.md) |
+| Principles | One obvious way, intent over cleverness, centralized change points | [references/principles.md](references/principles.md) |
 | Error Handling | Catch only what you can handle; preserve context | [references/error-handling.md](references/error-handling.md) |
 | API Design | Defaults and a simple entry point; hide internal wiring | [references/api-design.md](references/api-design.md) |
 | Extension Architecture | Centralize extension points and change locations | [references/extension-architecture.md](references/extension-architecture.md) |
@@ -45,8 +44,3 @@ Concise guidance for writing friendly Python code that is clear, maintainable, a
 | Kill AI Slop | Remove redundant validation, leaked internals, and placeholder failure handling | [references/kill-ai-slop.md](references/kill-ai-slop.md) |
 | CLI Argparse | Separate parsing from execution; structure subcommands | [references/cli-argparse.md](references/cli-argparse.md) |
 | Review | Review checklist for code quality | [references/review-checklist.md](references/review-checklist.md) |
-
-## References
-
-- Topic files must list source URLs in frontmatter `urls` unless an explicit
-  exception applies.
